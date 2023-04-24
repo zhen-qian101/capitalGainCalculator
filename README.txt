@@ -1,4 +1,4 @@
-This is a mini-project for calculating capital gain/loss on investing in Australian shares. 
+This is a mini-project for calculating capital gain/loss on investing Australian shares. 
 Run the script and you can get a quick estimation for your portfolio.
 However, for the purpose of lodging tax return, please do go to an acccountant!!
 
