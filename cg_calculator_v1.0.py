@@ -109,6 +109,25 @@ class portfolio:
                     
         print('--------------------')
         print('total capital gain/loss:', total_cg)
+    
+    def save_cg(self, financial_year, destination_path):
+
+        cg_list = []
+        
+        start_date = '01/07/'+str(financial_year-1)
+        start_date = datetime.strptime(start_date, '%d/%m/%Y').date()
+        end_date = '30/06/'+str(financial_year)
+        end_date = datetime.strptime(end_date, '%d/%m/%Y').date()
+        
+        for code, cgs in self.capitalgain.items():
+            cgs_current_fy = [[cg[0], str(cg[1])] for cg in cgs if datetime.strptime(cg[0], '%Y-%m-%d').date() >= start_date and datetime.strptime(cg[0], '%Y-%m-%d').date() <= end_date]
+            if cgs_current_fy != []:
+                cgs_current_fy = [[code]+cg_current_fy for cg_current_fy in cgs_current_fy]
+                cgs_current_fy = [','.join(cg_current_fy) for cg_current_fy in cgs_current_fy]
+                cg_list += cgs_current_fy
+        
+        with open(destination_path, 'w') as f:
+            f.write('\n'.join(cg_list)) 
         
 
 
@@ -137,20 +156,23 @@ if __name__ == "__main__":
     financial_year = 2023
     individual_p.print_cg(financial_year)
 
-
-    path2 = 'commsec_trust_Transactions.csv'
-    trust_p = portfolio('Trust Portfolio')
-    trust_p.import_transactions(path2)
-
-    date1, code1, unit1, value1, transfer_out = '05/12/2022', 'PLS', 20362, 93869.82, False
-    date2, code2, unit2, value2, transfer_out = '05/12/2022', 'SYI', 13182, 373050.6, False
+    destination_path1 = 'individual_p.csv'
+    individual_p.save_cg(financial_year, destination_path1)
 
 
-    trust_p.off_the_market_transfer(date1, code1, unit1, value1, transfer_out)
-    trust_p.off_the_market_transfer(date2, code2, unit2, value2, transfer_out)
+    # path2 = 'commsec_trust_Transactions.csv'
+    # trust_p = portfolio('Trust Portfolio')
+    # trust_p.import_transactions(path2)
 
-    trust_p.calculate_cg()
+    # date1, code1, unit1, value1, transfer_out = '05/12/2022', 'PLS', 20362, 93869.82, False
+    # date2, code2, unit2, value2, transfer_out = '05/12/2022', 'SYI', 13182, 373050.6, False
 
-    financial_year = 2023
-    trust_p.print_cg(financial_year)
+
+    # trust_p.off_the_market_transfer(date1, code1, unit1, value1, transfer_out)
+    # trust_p.off_the_market_transfer(date2, code2, unit2, value2, transfer_out)
+
+    # trust_p.calculate_cg()
+
+    # financial_year = 2023
+    # trust_p.print_cg(financial_year)
 
