@@ -160,19 +160,19 @@ if __name__ == "__main__":
     individual_p.save_cg(financial_year, destination_path1)
 
 
-    # path2 = 'commsec_trust_Transactions.csv'
-    # trust_p = portfolio('Trust Portfolio')
-    # trust_p.import_transactions(path2)
+    path2 = 'commsec_trust_Transactions.csv'
+    trust_p = portfolio('Trust Portfolio')
+    trust_p.import_transactions(path2)
 
-    # date1, code1, unit1, value1, transfer_out = '05/12/2022', 'PLS', 20362, 93869.82, False
-    # date2, code2, unit2, value2, transfer_out = '05/12/2022', 'SYI', 13182, 373050.6, False
+    date1, code1, unit1, value1, transfer_out = '05/12/2022', 'PLS', 20362, 93869.82, False
+    date2, code2, unit2, value2, transfer_out = '05/12/2022', 'SYI', 13182, 373050.6, False
 
 
-    # trust_p.off_the_market_transfer(date1, code1, unit1, value1, transfer_out)
-    # trust_p.off_the_market_transfer(date2, code2, unit2, value2, transfer_out)
+    trust_p.off_the_market_transfer(date1, code1, unit1, value1, transfer_out)
+    trust_p.off_the_market_transfer(date2, code2, unit2, value2, transfer_out)
 
-    # trust_p.calculate_cg()
+    trust_p.calculate_cg()
 
-    # financial_year = 2023
-    # trust_p.print_cg(financial_year)
+    financial_year = 2023
+    trust_p.print_cg(financial_year)
 
